@@ -1,13 +1,16 @@
 import Item from "./Item";
 
-export default function List(){
+export default function List(props){
+    // props { 
+    //  task : [ {}, {}, {} ] 
+    // }
+    // console.log(props.task)
+    // task =[ {}]
     return (
         <ul className=" flex flex-col gap-3">
-            <Item/>
-            <Item/>
-            <Item/>
-            <Item/>
-            <Item/>
+         { props.task.map( (item) =>{ 
+           return <Item key={item.id} item = {  item  } /> 
+         }) }
         </ul>
     )
 }
