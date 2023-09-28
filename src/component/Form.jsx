@@ -1,14 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function Form(){
+export default function Form({setTodo}){
 
     const [input,setInput] = useState('');
 
     const handleSubmitForm = e => {
         e.preventDefault();
-        //validate
-        console.log('yoooooo')
         axios.post(
             'http://localhost:8000/todo',{title: input},
             {headers :
@@ -17,10 +15,23 @@ export default function Form(){
         )
         .then((res)=> {
             console.log('sucess')
+           
+            setInput('');
+            // axios.get(
+            //     'http://localhost:8000/todo',{
+            //     headers :{Authorization :`Bearer ${localStorage.getItem('accessToken')}`}
+            //     })
+            //     .then( (res) =>{
+            //         setTodo(res.data.todos)
+            //     })
+            //     .catch( (err) =>{
+            //         console.log(err)
+            //     })
+
+            //new Todo Obj => อยู่ใน res.data.todo  from server
+            setTodo(prev => [...prev,res.data.todo])
         })
         .catch(err=>console.log(err))
-        
-        console.log('lagoi')
     };
 
     return (

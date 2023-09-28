@@ -1,6 +1,5 @@
 export default function Item(props){
-    // console.log('23')
-    console.log(props)
+    // console.log(props)
     return (
         <li className="flex justify-between border-2 border-blue-600 bg-white px-3 py-4 rounded-lg">
             <span>{props.item.title}</span>
